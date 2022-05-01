@@ -1,4 +1,4 @@
-package com.efub.efubtwitterteam3;
+package com.efub.efubtwitterteam3.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
