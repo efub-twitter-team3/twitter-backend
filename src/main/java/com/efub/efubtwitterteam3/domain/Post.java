@@ -1,8 +1,11 @@
-package com.efub.efubtwitterteam3;
+package com.efub.efubtwitterteam3.domain;
+
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
 @Table(name = "post")
 public class Post {
