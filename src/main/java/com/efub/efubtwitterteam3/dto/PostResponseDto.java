@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class PostCreateResponseDto {
+public class PostResponseDto {
     Long postId;
     String message;
 
-    public PostCreateResponseDto(Long postId, String message){
+    public PostResponseDto(Long postId, String message){
         this.postId = postId;
         this.message = message;
     }
