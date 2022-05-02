@@ -30,4 +30,11 @@ public class User {
         this.identifier = identifier;
         this.bio = bio;
     }
+
+    public void updateProfile(String nickname, String identifier, String bio){
+        this.nickname = nickname;
+        this.identifier = identifier;
+        this.bio = bio;
+    }
+
 }
