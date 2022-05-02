@@ -30,13 +30,7 @@ public class UserService {
         User entity = userRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
 
-        // patch 부분 수정
-        if(req.getNickname() != null)
-            entity.setNickname(req.getNickname());
-        if(req.getIdentifier() != null)
-            entity.setIdentifier(req.getIdentifier());
-        if(req.getBio() != null)
-            entity.setBio(req.getBio());
+        entity.updateProfile(req.getNickname(), req.getIdentifier(), req.getBio());
 
         userRepository.save(entity);
         return new UserResponseDto(entity);  // 변경된 유저의 정보를 반환

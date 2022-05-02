@@ -3,12 +3,10 @@ package com.efub.efubtwitterteam3.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "user")
@@ -32,4 +30,11 @@ public class User {
         this.identifier = identifier;
         this.bio = bio;
     }
+
+    public void updateProfile(String nickname, String identifier, String bio){
+        this.nickname = nickname;
+        this.identifier = identifier;
+        this.bio = bio;
+    }
+
 }
