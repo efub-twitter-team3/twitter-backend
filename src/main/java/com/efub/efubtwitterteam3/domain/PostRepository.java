@@ -12,4 +12,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     @Query("SELECT p FROM Post p")
     List<PostGetResponseDto> findPostsCustomResponse();
+
+    @Query("SELECT p FROM Post p WHERE p.user=:user")
+    List<PostGetResponseDto> findUserPostsCustomResponse(User user);
 }
