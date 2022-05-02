@@ -13,6 +13,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -29,6 +30,10 @@ public class PostService {
         Post post = postRequestDto.toEntity(userRepository);
         postRepository.save(post);
         return post.getId();
+    }
+
+    public List<PostGetResponseDto> findAll() {
+        return postRepository.findPostsCustomResponse();
     }
 
     @Transactional

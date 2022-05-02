@@ -10,12 +10,18 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/posts")
 public class PostController {
     private final PostService postService;
+
+    @GetMapping("")
+    public List<PostGetResponseDto> findAll() {
+        return postService.findAll();
+    }
 
     @PostMapping("")
     public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto postRequestDto) {
