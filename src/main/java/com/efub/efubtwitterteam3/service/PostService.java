@@ -9,6 +9,7 @@ import com.efub.efubtwitterteam3.dto.PostRequestDto;
 import com.efub.efubtwitterteam3.service.error.CustomException;
 import com.efub.efubtwitterteam3.service.error.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -37,5 +38,13 @@ public class PostService {
         PostGetResponseDto postGetResponseDto = new PostGetResponseDto(entity);
 
         return postGetResponseDto;
+    }
+
+    @Transactional
+    public void deleteById(Long postId){
+        postRepository.delete(
+                postRepository.findById(postId)
+                        .orElseThrow(() -> new CustomException(ErrorCode.PAGE_NOT_FOUND))
+        );
     }
 }

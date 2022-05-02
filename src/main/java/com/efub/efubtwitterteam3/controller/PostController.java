@@ -2,7 +2,7 @@ package com.efub.efubtwitterteam3.controller;
 
 import com.efub.efubtwitterteam3.dto.PostGetResponseDto;
 import com.efub.efubtwitterteam3.dto.PostRequestDto;
-import com.efub.efubtwitterteam3.dto.PostCreateResponseDto;
+import com.efub.efubtwitterteam3.dto.PostResponseDto;
 import com.efub.efubtwitterteam3.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,19 +18,28 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("")
-    public ResponseEntity<PostCreateResponseDto> createPost(@RequestBody PostRequestDto postRequestDto) {
+    public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto postRequestDto) {
         Long postId = postService.createPost(postRequestDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(postId)
                 .toUri();
 
-        PostCreateResponseDto postCreateResponseDto = new PostCreateResponseDto(postId, "SUCCESS");
+        PostResponseDto postCreateResponseDto = new PostResponseDto(postId, "SUCCESS");
+
         return ResponseEntity.created(location).body(postCreateResponseDto);
     }
 
     @GetMapping("/{postId}")
     public PostGetResponseDto findPostById(@PathVariable Long postId){
         return postService.findById(postId);
+    }
+
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<PostResponseDto> deletePostById(@PathVariable Long postId){
+        postService.deleteById(postId);
+        PostResponseDto postDeleteResponseDto = new PostResponseDto(postId, "SUCCESS");
+
+        return ResponseEntity.ok().body(postDeleteResponseDto);
     }
 }
